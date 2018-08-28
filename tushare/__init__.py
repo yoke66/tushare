@@ -1,5 +1,10 @@
-__version__ = '0.9.2'
+# -*- coding:utf-8 -*- 
+import codecs
+import os
+
+__version__ = codecs.open(os.path.join(os.path.dirname(__file__), 'VERSION.txt')).read()
 __author__ = 'Jimmy Liu'
+
 """
 for trading data
 """
@@ -8,7 +13,9 @@ from tushare.stock.trading import (get_hist_data, get_tick_data,
                                    get_h_data, get_today_ticks,
                                    get_index, get_hists,
                                    get_k_data, get_day_all,
-                                   get_sina_dd)
+                                   get_sina_dd, bar, tick,
+                                   get_markets, quotes,
+                                   get_instrument, reset_instrument)
 
 """
 for trading data
@@ -48,13 +55,18 @@ from tushare.stock.newsevent import (get_latest_news, latest_content,
 
 """
 for reference
+moneyflow_hsgt:沪深港通资金流向
 """
 from tushare.stock.reference import (profit_data, forecast_data,
                                      xsg_data, fund_holdings,
-                                     new_stocks, sh_margins,
+                                     new_stocks, new_cbonds, sh_margins,
                                      sh_margin_details,
                                      sz_margins, sz_margin_details,
-                                     top10_holders, profit_divis)
+                                     top10_holders, profit_divis,
+                                     moneyflow_hsgt, margin_detail,
+                                     margin_target, margin_offset,
+                                     margin_zsl, stock_issuance,
+                                     stock_pledged, pledged_detail)
 
 """
 for shibor
@@ -62,6 +74,12 @@ for shibor
 from tushare.stock.shibor import (shibor_data, shibor_quote_data,
                                   shibor_ma_data, lpr_data,
                                   lpr_ma_data)
+
+
+"""
+for tushare pro api
+"""
+from tushare.pro.data_pro import pro_api
 
 """
 for LHB
@@ -76,13 +94,6 @@ for utils
 from tushare.util.dateu import (trade_cal, is_holiday)
 
 
-"""
-for DataYes Token
-"""
-from tushare.util.upass import (set_token, get_token, get_broker,
-                                set_broker, remove_broker)
-
-from tushare.datayes.api import *
 
 from tushare.internet.boxoffice import (realtime_boxoffice, day_boxoffice,
                                         day_cinema, month_boxoffice)
@@ -99,7 +110,6 @@ from tushare.fund.nav import (get_nav_open, get_nav_close, get_nav_grading,
 for trader API
 """
 from tushare.trader.trader import TraderAPI
-
 
 """
 for futures API
@@ -123,3 +133,7 @@ from tushare.futures.domestic import (get_cffex_daily, get_czce_daily,
 
 from tushare.coins.market import (coins_tick, coins_bar,
                                   coins_snapshot, coins_trade)
+
+from tushare.util.conns import (get_apis, close_apis)
+
+from tushare.util.upass import (get_token, set_token)
